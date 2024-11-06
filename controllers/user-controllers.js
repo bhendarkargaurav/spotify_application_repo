@@ -49,7 +49,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports {
+module.exports = {
     register,
     login,
     getUserById ,
