@@ -5,7 +5,8 @@ const connect = require('./config/database');
 const { PORT } = require('./config/serverConfig');
 
 // const User = require('./models/user');
-const UserRepository = require('./repository/user-repository');
+// const UserRepository = require('./repository/user-repository');
+const UserService = require('./services/user-service');
 
 const setupAndStartServer = () => {
     const app = express();
@@ -26,7 +27,7 @@ const setupAndStartServer = () => {
         const userRepo = new UserRepository();
         const user = await userRepo.createUser({
             username: 'AnkitKr',
-            email: 'ankit12@.com',
+            email: 'ankit123@.com',
             password: '123456'                                           // when we are using model into repository 
         });                                                              // and repository into index.js
         // const user = await userRepo.findById('67265d0525ead4f6f98096ec');
