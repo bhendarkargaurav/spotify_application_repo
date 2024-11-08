@@ -3,11 +3,27 @@
 const UserService = require('../services/user-service');
 const userService = new UserService();
 
-const register = async (req, res) => {
+
+// app.post('/create-user', async (req, res) => {
+//   console.log("Request body:", req.body); // Check if req.body contains the data you expect
+//   try {
+//     const user = await userRepository.createUser(req.body); // Passing req.body to createUser
+//     res.status(201).json(user); // Return created user as response
+//   } catch (error) {
+//     console.log("Error in controller:", error);
+//     res.status(400).json({ error: 'Error creating user' });
+//   }
+// });
+
+
+
+const createUser = async (req, res) => {
   try {
-    const user = await userService.registerUser(req.body);
+    const user = await userService.createUser(req.body);
+    console.log("user rwegister is", user);
     res.status(201).json(user);
   } catch (error) {
+    console.log('something is wrong in controller');
     res.status(400).json({ error: error.message });
   }
 };
@@ -49,8 +65,9 @@ const deleteUser = async (req, res) => {
   }
 };
 
+
 module.exports = {
-    register,
+    createUser,
     login,
     getUserById ,
     updateUser,

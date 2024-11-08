@@ -6,7 +6,10 @@ const { PORT } = require('./config/serverConfig');
 
 // const User = require('./models/user');
 // const UserRepository = require('./repository/user-repository');
-const UserService = require('./services/user-service');
+// const UserService = require('./services/user-service');
+// const createUser = require('./controllers/user-controllers')
+
+const userRoutes = require('./routes/v1/index');
 
 const setupAndStartServer = () => {
     const app = express();
@@ -24,16 +27,22 @@ const setupAndStartServer = () => {
         // console.log(user);
         
 
-        const userRepo = new UserRepository();
-        const user = await userRepo.createUser({
-            username: 'AnkitKr',
-            email: 'ankit123@.com',
-            password: '123456'                                           // when we are using model into repository 
-        });                                                              // and repository into index.js
+        // const userRepo = new UserRepository();
+        // // console.log("userdara is ", userData);
+        // const user = await userRepo.createUser({          //direct fetching from repo
+        //     username: 'Aarthi',
+        //     email: 'aarthi123@.com',
+        //     password: '9080',
+        //     playlists: "BlankSpace"                                 // when we are using model into repository 
+        // });                                                              // and repository into index.js
         // const user = await userRepo.findById('67265d0525ead4f6f98096ec');
         // const user = await userRepo.findByEmail("gaurav123@.com");
+       
+        // const userRepo = new UserService();
         
-        console.log(user);
+        app.use('/api', userRoutes);
+        
+        // console.log(user);
     })
 }
 

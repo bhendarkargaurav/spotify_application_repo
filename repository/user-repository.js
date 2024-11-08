@@ -2,19 +2,22 @@ const User = require('../models/user');
 
 class UserRepository {
   // Method to create a new user
+
   async createUser(userData) {
+    console.log("userdata... is", userData);
     try {
-        return await User.create(userData);
-    
+        const user =  await User.create(userData);
+        return user;
     } catch (error) {
-        console.log(error);
+        console.log("Something went wrong in the repository layer");
+        throw {error};
     }
   }
 
 //   Method to find a user by ID
      async findById(userId){
         try {
-            return await User.findById(userId);
+            return await User.findById(userId);   
         } catch (error) {
             console.log(error);
         }

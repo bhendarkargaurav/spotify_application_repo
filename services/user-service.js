@@ -1,8 +1,8 @@
 
 // services/userService.js
-const UserRepository = require('../repository/user-repository');
-// const bcrypt = require('bcrypt');
-// const jwt = require('jsonwebtoken');
+const UserRepository = require('../repository/user-repository.js');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 class UserService {
   constructor() {
@@ -10,7 +10,8 @@ class UserService {
   }
 
   // Register a new user
-  async registerUser(userData) {
+    async createUser(userData) {         
+    console.log("user data is", userData)       
     const { username, email, password } = userData;
 
     // Check if email already exists
