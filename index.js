@@ -1,5 +1,6 @@
 const express = require('express');
 
+
 const connect = require('./config/database');
 
 const { PORT } = require('./config/serverConfig');
@@ -9,10 +10,13 @@ const { PORT } = require('./config/serverConfig');
 // const UserService = require('./services/user-service');
 // const createUser = require('./controllers/user-controllers')
 
+
 const userRoutes = require('./routes/v1/index');
 
 const setupAndStartServer = () => {
     const app = express();
+    app.use(express.json());
+    app.use(express.urlencoded({extended: true}));
 
     app.listen(PORT, async () => {
         console.log(`Server started at port ${PORT}`);
