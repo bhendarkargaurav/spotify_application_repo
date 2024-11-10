@@ -19,9 +19,16 @@ const userService = new UserService();
 
 const createUser = async (req, res) => {
   try {
-    const user = await userService.createUser(req.body);
-    console.log("user rwegister is", user);
-    res.status(201).json(user);
+    const user = await userService.createUser({  //req.body
+      email: req.body.email,
+      password: req.body.password
+    });
+    return res.status(201).json({
+      success: true,
+      message: "successfully created a new user",
+      data: user,
+      error: {}
+    });
   } catch (error) {
     console.log('something is wrong in controller');
     res.status(400).json({ error: error.message });

@@ -20,6 +20,7 @@ class UserService {
       throw new Error('Email already in use');
     }
 
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -38,13 +39,15 @@ class UserService {
     // Find user by email
     const user = await this.userRepository.findByEmail(email);
     if (!user) {
-      throw new Error('Invalid email or password');
+      throw new Error('Invalid email ');
     }
 
     // Check password
+    console.log(password);
+    console.log(user.password);
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      throw new Error('Invalid email or password');
+      throw new Error('Invalid password');
     }
 
     // Generate JWT token
