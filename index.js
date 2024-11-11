@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require("cors");
 
 
 const connect = require('./config/database');
@@ -16,6 +17,7 @@ const userRoutes = require('./routes/v1/index');
 const setupAndStartServer = () => {
     const app = express();
     app.use(express.json());
+    app.use(cors()); 
     app.use(express.urlencoded({extended: true}));
 
     app.listen(PORT, async () => {

@@ -4,7 +4,7 @@ class UserRepository {
   // Method to create a new user
 
   async createUser(userData) {
-    console.log("userdata... is", userData);
+    console.log("userdata is", userData);
     try {
         const user =  await User.create(userData);
         return user;

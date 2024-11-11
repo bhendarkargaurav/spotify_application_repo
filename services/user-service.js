@@ -10,8 +10,7 @@ class UserService {
   }
 
   // Register a new user
-    async createUser(userData) {         
-    console.log("user data is", userData)       
+    async createUser(userData) {             
     const { username, email, password } = userData;
 
     // Check if email already exists
@@ -20,7 +19,7 @@ class UserService {
       throw new Error('Email already in use');
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -52,6 +51,7 @@ class UserService {
 
     // Generate JWT token
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     return { user, token };
   }
