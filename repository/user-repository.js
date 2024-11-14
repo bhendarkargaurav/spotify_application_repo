@@ -1,12 +1,12 @@
 const User = require('../models/user');
 
 class UserRepository {
-  // Method to create a new user
 
+  // Method to create a new user
   async createUser(userData) {
     console.log("userdata is", userData);
     try {
-        const user =  await User.create(userData);
+        const user = await User.create(userData);  // create new user in database
         return user;
     } catch (error) {
         console.log("Something went wrong in the repository layer");
@@ -15,13 +15,13 @@ class UserRepository {
   }
 
 //   Method to find a user by ID
-     async findById(userId){
-        try {
-            return await User.findById(userId);   
-        } catch (error) {
-            console.log(error);
-        }
-     }
+    //  async findById(userId){
+    //     try {
+    //         return await User.findById(userId);   
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    //  }
 
 //   // Method to find a user by email (for authentication, etc.)
      async findByEmail(email){
@@ -38,7 +38,6 @@ class UserRepository {
 //   }
 
 //   // Method to delete a user
-
       async deleteUser(userId){
         try {
             return await User.findByIdAndDelete(userId);

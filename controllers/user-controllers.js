@@ -16,7 +16,6 @@ const userService = new UserService();
 // });
 
 
-
 const createUser = async (req, res) => {
   try {
     const user = await userService.createUser({  //req.body
