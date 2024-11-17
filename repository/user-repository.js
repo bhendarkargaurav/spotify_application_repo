@@ -8,20 +8,20 @@ class UserRepository {
     try {
         const user = await User.create(userData);  // create new user in database
         return user;
-    } catch (error) {
+    } catch (error) { 
         console.log("Something went wrong in the repository layer");
         throw {error};
     }
   }
 
 //   Method to find a user by ID
-    //  async findById(userId){
-    //     try {
-    //         return await User.findById(userId);   
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    //  }
+     async findById(userId){
+        try {
+            return await User.findById(userId);   
+        } catch (error) {
+            console.log(error);
+        }
+     }
 
 //   // Method to find a user by email (for authentication, etc.)
      async findByEmail(email){

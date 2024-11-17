@@ -6,7 +6,7 @@ const connect = require('./config/database');
 
 const { PORT } = require('./config/serverConfig');
 
-// const User = require('./models/user');
+// const Album = require('./models/album');
 // const UserRepository = require('./repository/user-repository');
 // const UserService = require('./services/user-service');
 // const createUser = require('./controllers/user-controllers')
@@ -25,12 +25,13 @@ const setupAndStartServer = () => {
         await connect();
         console.log('mongoDB connected');
 
-        // const user = await User.create({
-        //     username: 'Gaurav Bhendarkar',
-        //     email: 'gaurav123@.com',                // when we are using model directly into index.js then use this 
-        //     password: '123456',
+        // const album = await Album.create({
+        //     title: 'Tollywood',
+        //     artist: 'Manasa',
+        //     songs: [],
+        //     genre: 'fock song'
         // });
-        // console.log(user);
+        // console.log(album);
         
 
         // const userRepo = new UserRepository();
@@ -48,7 +49,7 @@ const setupAndStartServer = () => {
         
         app.use('/api', userRoutes);
         
-        // console.log(user);
+        
     })
 }
 
