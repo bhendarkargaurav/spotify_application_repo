@@ -14,6 +14,7 @@ class SongRepository {
     
       // Fetch a song by ID
       async getSongById(songId) {
+        console.log("Song id Repo", songId);
         try {
           return await Song.findById(songId).populate('artist album');
         } catch (error) {
