@@ -10,9 +10,10 @@ const songService = new SongService();
       res.status(201).json({
         success: true,
         message: 'Song created successfully',
-        data: song,
+        data: song
       });
-      return song;
+      console.log('The song data is', song);
+      // return song;
     } catch (error) {
       res.status(500).json({
         success: false,
@@ -25,6 +26,7 @@ const songService = new SongService();
   const getSong = async (req, res) => {
     try {
       const songId = req.params.id; // Extract song ID from the route parameters
+      console.log("controller songid is", songId);
       const song = await songService.getSong(songId);
       res.status(200).json({
         success: true,
