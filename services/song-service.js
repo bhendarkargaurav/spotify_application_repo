@@ -16,11 +16,13 @@ class SongService {
 
   async getSong(songId) {
     try {
-      const song = await songRepository.getSongById(songId);
-      if (!song) {
-        throw new Error(`Song with ID ${songId} not found`);
-      }
+      console.log("service songId is ", songId);
+      const song = await this.songRepository.getSongById(songId);
       return song;
+      // if (!song) {
+      //   throw new Error(`Song with ID ${songId} not found`);
+      // }
+      // return song;
     } catch (error) {
       throw new Error(`Error in getSong: ${error.message}`);
     }

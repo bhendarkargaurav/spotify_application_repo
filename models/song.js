@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+require('../models/artist');
+require('../models/album');
 
 const songSchema = new mongoose.Schema({
   title: { 
@@ -6,14 +8,12 @@ const songSchema = new mongoose.Schema({
     required: true 
   },
   artist: {
-    type: 'String',
-    // type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Artist',
     // required: true 
   },
   album: { 
-    type: 'String',
-    // type: mongoose.Schema.Types.ObjectId, 
+    type: mongoose.Schema.Types.ObjectId, 
     ref: 'Album' 
   },
   duration: {        // Duration in seconds
