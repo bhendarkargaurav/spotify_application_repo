@@ -14,16 +14,21 @@ class SongRepository {
     
       // Fetch a song by ID
       async getSongById(songId) {
-        console.log("Song id Repo", songId);
+        // console.log("Song id Repo", songId);
         try {
-          return await Song.findById(songId).populate('artist album');
+          const song = await Song.findById(songId).populate('artist album');
+          if (!song) {
+            throw new Error('Song not found');
+          }
+          return song;
         } catch (error) {
           throw new Error(`Error fetching song by ID: ${error.message}`);
         }
       }
     
-      // Fetch all songs with optional filters
+      // Fetch all songs with optional filtersltefil
       async getAllSongs(filters = {}) {
+        console.log("all songim repo", filters);
         try {
           return await Song.find(filters).populate('artist album');
         } catch (error) {
