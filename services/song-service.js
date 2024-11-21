@@ -29,8 +29,9 @@ class SongService {
   }
 
   async listSongs(filters) {
+    console.log("all song in service", filters);
     try {
-      return await songRepository.getAllSongs(filters);
+      return await this.songRepository.getAllSongs(filters);
     } catch (error) {
       throw new Error(`Error in listSongs: ${error.message}`);
     }
@@ -38,7 +39,7 @@ class SongService {
 
   async editSong(songId, updateData) {
     try {
-      const updatedSong = await songRepository.updateSong(songId, updateData);
+      const updatedSong = await this.songRepository.updateSong(songId, updateData);
       if (!updatedSong) {
         throw new Error(`Song with ID ${songId} not found for update`);
       }
@@ -50,7 +51,7 @@ class SongService {
 
   async removeSong(songId) {
     try {
-      const deletedSong = await songRepository.deleteSong(songId);
+      const deletedSong = await this.songRepository.deleteSong(songId);
       if (!deletedSong) {
         throw new Error(`Song with ID ${songId} not found for deletion`);
       }
@@ -62,3 +63,5 @@ class SongService {
 }
 
 module.exports = SongService;
+
+
