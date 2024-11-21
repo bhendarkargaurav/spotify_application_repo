@@ -12,7 +12,7 @@ router.post('/register', userController.createUser);
 // User login route
 router.post('/login', userController.login);
 // Get user by ID route
-router.get('/:id', userController.getUserById);
+router.get('/users/:id', userController.getUserById);
 // Update user route
 router.put('/:id', userController.updateUser);
 // Delete user route

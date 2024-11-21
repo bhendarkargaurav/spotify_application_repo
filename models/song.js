@@ -8,17 +8,19 @@ const songSchema = new mongoose.Schema({
     required: true 
   },
   artist: {
-    type: mongoose.Schema.Types.ObjectId,
+    // type: mongoose.Schema.Types.ObjectId,
+    type: 'String',
     ref: 'Artist',
     // required: true 
   },
   album: { 
-    type: mongoose.Schema.Types.ObjectId, 
+    // type: mongoose.Schema.Types.ObjectId, 
+    type: 'String',
     ref: 'Album' 
   },
   duration: {        // Duration in seconds
     type: Number, 
-    // required: true 
+    required: true 
   }, 
   genre: { 
     type: String 
