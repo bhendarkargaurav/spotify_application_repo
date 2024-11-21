@@ -26,7 +26,7 @@ const songService = new SongService();
   const getSong = async (req, res) => {
     try {
       const songId = req.params.id; // Extract song ID from the route parameters
-      console.log("controller songid is", songId);
+      // console.log("controller songid is", songId);
       const song = await songService.getSong(songId);
       res.status(200).json({
         success: true,
@@ -44,8 +44,7 @@ const songService = new SongService();
   // Get all songs with optional filters
   const listSongs = async (req, res) => {
     try {
-      const filters = req.query; // Extract filters from the query parameters
-      const songs = await songService.listSongs(filters);
+      const songs = await songService.listSongs(req.query); // No user logic here
       res.status(200).json({
         success: true,
         message: 'Songs retrieved successfully',
@@ -54,7 +53,7 @@ const songService = new SongService();
     } catch (error) {
       res.status(500).json({
         success: false,
-        message: error.message,
+        message: `Error in listSongs: ${error.message}`,
       });
     }
   }
