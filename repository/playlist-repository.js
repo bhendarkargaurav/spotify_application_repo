@@ -2,11 +2,7 @@
 const Playlist = require('../models/playlist');
 
 class PlaylistRepository {
-  /**
-   * Create a new playlist
-   * @param {Object} playlistData - Data for the new playlist
-   * @returns {Promise<Object>} - Created playlist document
-   */
+  
   async createPlaylist(playlistData) {
     try {
       const playlist = new Playlist(playlistData);
@@ -16,11 +12,7 @@ class PlaylistRepository {
     }
   }
 
-  /**
-   * Get all playlists
-   * @param {Object} filter - Filter criteria for playlists
-   * @returns {Promise<Array>} - List of playlists
-   */
+  // get all playlists
   async getPlaylists(filter = {}) {
     try {
       return await Playlist.find(filter).populate('user songs');
@@ -29,11 +21,8 @@ class PlaylistRepository {
     }
   }
 
-  /**
-   * Get a single playlist by ID
-   * @param {String} id - Playlist ID
-   * @returns {Promise<Object>} - Playlist document
-   */
+
+  //Get a single playlist by ID
   async getPlaylistById(id) {
     try {
       return await Playlist.findById(id).populate('user songs');
@@ -42,12 +31,10 @@ class PlaylistRepository {
     }
   }
 
-  /**
-   * Update a playlist by ID
-   * @param {String} id - Playlist ID
-   * @param {Object} updateData - Data to update
-   * @returns {Promise<Object>} - Updated playlist document
-   */
+  
+   // Update a playlist by ID
+   // id - Playlist ID
+   // updateData - Data to update
   async updatePlaylist(id, updateData) {
     try {
       return await Playlist.findByIdAndUpdate(id, updateData, { new: true }).populate('user songs');
@@ -56,11 +43,9 @@ class PlaylistRepository {
     }
   }
 
-  /**
-   * Delete a playlist by ID
-   * @param {String} id - Playlist ID
-   * @returns {Promise<Object>} - Deleted playlist document
-   */
+  
+   // Delete a playlist by ID
+   // @param {String} id - Playlist ID
   async deletePlaylist(id) {
     try {
       return await Playlist.findByIdAndDelete(id);
@@ -69,12 +54,10 @@ class PlaylistRepository {
     }
   }
 
-  /**
-   * Add a song to a playlist
-   * @param {String} playlistId - Playlist ID
-   * @param {String} songId - Song ID
-   * @returns {Promise<Object>} - Updated playlist document
-   */
+  
+  // Add a song to a playlist
+  // playlistId - Playlist ID
+  // songId - Song ID
   async addSongToPlaylist(playlistId, songId) {
     try {
       return await Playlist.findByIdAndUpdate(
@@ -87,12 +70,10 @@ class PlaylistRepository {
     }
   }
 
-  /**
-   * Remove a song from a playlist
-   * @param {String} playlistId - Playlist ID
-   * @param {String} songId - Song ID
-   * @returns {Promise<Object>} - Updated playlist document
-   */
+  
+  // Remove a song from a playlist
+  // playlistId - Playlist ID
+  // songId - Song ID
   async removeSongFromPlaylist(playlistId, songId) {
     try {
       return await Playlist.findByIdAndUpdate(
