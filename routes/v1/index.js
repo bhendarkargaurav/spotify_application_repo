@@ -33,12 +33,12 @@ router.get('/albums', albumController.getAllAlbum);         // Get all albums
 
 //pyalist management
 router.post('/crateplaylist', playlistController.createPlaylist);   // Create a playlist
-router.get('/', playlistController.getAllPlaylists);    // Get all playlists
-router.get('/:id', playlistController.getPlaylistById);   // Get a playlist by ID
-router.put('/:id', playlistController.updatePlaylist);    // Update a playlist
-router.delete('/:id', playlistController.deletePlaylist);   // Delete a playlist
-router.post('/:playlistId/songs', playlistController.addSongToPlaylist);     // Add a song to a playlist
-router.delete('/:playlistId/songs', playlistController.removeSongFromPlaylist);       // Remove a song from a playlist
+router.get('/getallplaylist', playlistController.getAllPlaylists);    // Get all playlists
+router.get('/playlist/:id', playlistController.getPlaylistById);   // Get a playlist by ID
+router.put('/playlist/:id', playlistController.updatePlaylist);    // Update a playlist
+router.delete('/playlist/:id', playlistController.deletePlaylist);   // Delete a playlist
+router.post('/playlist/:playlistId/songs', playlistController.addSongToPlaylist);     // Add a song to a playlist
+router.delete('/playlist/:playlistId/songs', playlistController.removeSongFromPlaylist);       // Remove a song from a playlist
 
 
 module.exports = router;
