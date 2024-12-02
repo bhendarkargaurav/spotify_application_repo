@@ -7,6 +7,7 @@ const userController = require('../../controllers/user-controllers');
 const songController = require('../../controllers/song-controller');
 const albumController = require('../../controllers/album-controller');
 const playlistController = require('../../controllers/playlist-controller');
+const artistController = require('../../controllers/artist-controller');
 
 
 // User registration(USER HANDLER)
@@ -31,7 +32,7 @@ router.get('/albums', albumController.getAllAlbum);         // Get all albums
 // router.delete('/:id', AlbumController.deleteAlbum);    // Delete album by ID
 
 
-//pyalist management
+//plyalist management
 router.post('/crateplaylist', playlistController.createPlaylist);   // Create a playlist
 router.get('/getallplaylist', playlistController.getAllPlaylists);    // Get all playlists
 router.get('/playlist/:id', playlistController.getPlaylistById);   // Get a playlist by ID
@@ -40,5 +41,12 @@ router.delete('/playlist/:id', playlistController.deletePlaylist);   // Delete a
 router.post('/playlist/:playlistId/songs', playlistController.addSongToPlaylist);     // Add a song to a playlist
 router.delete('/playlist/:playlistId/songs', playlistController.removeSongFromPlaylist);       // Remove a song from a playlist
 
+
+// Artist Management
+router.post('/createartist', artistController.createArtist);
+router.get('/getallartist', artistController.getAllArtists);
+router.get('/artist/:id', artistController.getArtistByid);
+router.put('/artist/:id', artistController.updateArtistById);
+router.delete('/artist/:id', artistController.deleteArtistById);
 
 module.exports = router;
