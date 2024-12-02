@@ -8,6 +8,7 @@ const { PORT } = require('./config/serverConfig');
 
 // const Album = require('./models/album');
 // const UserRepository = require('./repository/user-repository');
+// const ArtistRepository = require('./repository/artist-repository');
 // const UserService = require('./services/user-service');
 // const createUser = require('./controllers/user-controllers')
 
@@ -32,7 +33,16 @@ const setupAndStartServer = () => {
         //     genre: 'fock song'
         // });
         // console.log(album);
-        
+
+
+        // const artistRepo = ArtistRepository;
+        // const artist = await ArtistRepository.createArtist({          //direct fetching from repo
+        //     name: 'Arijit',
+        //     bio: 'Top song Ye dil hai mushkil',
+        //     profileImageUrl: 'hghjcfdfjhbcakbjbc',
+        //     socialLinks: "BlankSpace"                                 // when we are using model into repository 
+        // });  
+        // console.log("artist created succesfully", artist);
 
         // const userRepo = new UserRepository();
         // // console.log("userdara is ", userData);
