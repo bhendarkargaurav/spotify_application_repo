@@ -1,5 +1,7 @@
 ## Spotify Backend 
 
+![alt text](image.png)
+
 ### This is a simplified version of spotify_backend Using Nodejs, express and MongoDB.
 
 -> There will be the simple functionality to handle 
