@@ -18,7 +18,13 @@ const userSchema = new mongoose.Schema({
   playlists: [{ 
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Playlist' 
-  }]
+  }],
+
+  otp: {            // Optional: to store generated OTP
+    type: String 
+  }, 
+  otpExpiresAt: {   // Expiration time for the OTP
+    type: Date }, 
 });
 
 const User = mongoose.model('User', userSchema);

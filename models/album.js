@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require('../models/song');
 
 const albumSchema = new mongoose.Schema({
   title: { 
