@@ -8,6 +8,7 @@ const songController = require('../../controllers/song-controller');
 const albumController = require('../../controllers/album-controller');
 const playlistController = require('../../controllers/playlist-controller');
 const artistController = require('../../controllers/artist-controller');
+const otpController = require('../../controllers/otp-controller');
 
 
 // User registration(USER HANDLER)
@@ -48,5 +49,12 @@ router.get('/getallartist', artistController.getAllArtists);
 router.get('/artist/:id', artistController.getArtistByid);
 router.put('/artist/:id', artistController.updateArtistById);
 router.delete('/artist/:id', artistController.deleteArtistById);
+
+
+// Route to generate an OTP
+router.post('/generate', otpController.generateOTP);
+// Route to verify an OTP
+router.post('/verify', otpController.verifyOTP);
+
 
 module.exports = router;
