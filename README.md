@@ -11,8 +11,9 @@
 
      -> Bcrypt takes the password and generates a hash with a unique salt.
      -> The hash is stored in the database instead of the original password.
-     -> JWT(json web tocke) used to generate tocken after login and that tocken 
+     -> JWT(json web tocken) used to generate tocken after login and that tocken 
         is not save in server its stored in browser.
+        (-> https://chatgpt.com/share/67700efe-56cc-8001-8f7b-09e654e43cca)
 
     Song:
         song can be added including name, artist, time and all the neccesary details
