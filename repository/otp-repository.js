@@ -2,10 +2,12 @@ const Otp = require('../models/otp');
 
 class OTPRepository {
     // Method to create a new OTP
-    async createOTP(email, otp){
+    async createOTP(data){
+        console.log(data);
         try {
-            const otp = await Otp.create({ email, opt}) //te a new OTP record
-            return otp;
+            console.log('Data received in createOTP:', data); // Debugging log
+            const otpDocument = new Otp(data);
+            return await otpDocument.save(); // Save
         } catch (error) {
             console.error("Error creating OTP in the repository layer:", error);
             throw { error };
@@ -21,7 +23,6 @@ class OTPRepository {
             throw { error };
         }
     }
-
 }
 
 module.exports = OTPRepository;

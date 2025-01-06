@@ -4,8 +4,9 @@ const otpService = new OTPService();
 const generateOTP = async (req, res) => {
     const { email } = req.body;
     try {
-        await otpService.generateOTP(email);
-        res.status(200).send('OTP sent successfully');
+        const result = await otpService.generateOTP(email);
+        res.status(200).json({ message: 'OTP generated successfully', result });
+        // res.status(200).send('OTP sent successfully');
     } catch (error) {
         console.error(error);
         res.status(500).send('Error sending OTP');
