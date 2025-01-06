@@ -3,7 +3,6 @@ const cors = require("cors");
 
 
 const connect = require('./config/database');
-
 const { PORT } = require('./config/serverConfig');
 
 // const Album = require('./models/album');
