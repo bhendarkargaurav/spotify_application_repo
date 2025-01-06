@@ -52,7 +52,7 @@ router.delete('/artist/:id', artistController.deleteArtistById);
 
 
 // Route to generate an OTP
-router.post('/generate', otpController.generateOTP);
+router.post('/generateotp', otpController.generateOTP);
 // Route to verify an OTP
 router.post('/verify', otpController.verifyOTP);
 
