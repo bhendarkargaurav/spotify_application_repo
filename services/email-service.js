@@ -9,8 +9,10 @@ class EmailService {
         secure: true,
         // service: 'gmail', // or use SMTP server details
         auth: {
-          user: 'gauravbhendarkar123@gmail.com',
-          pass: 'lunu khko gebl fbjh', // Use App Passwords if 2FA is enabled   lunu khko gebl fbjh
+        //   user: 'gauravbhendarkar123@gmail.com',
+        //   pass: 'lunu khko gebl fbjh', //          
+            user: process.env.EMAIL_USER,            //sequerity perpose user and pass is in env filr
+            pass: process.env.EMAIL_PASS,
         },
       });
 

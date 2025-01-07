@@ -51,9 +51,8 @@ router.put('/artist/:id', artistController.updateArtistById);
 router.delete('/artist/:id', artistController.deleteArtistById);
 
 
-// Route to generate an OTP
+// Route to generate an OTP and verify an OTP
 router.post('/generateotp', otpController.generateOTP);
-// Route to verify an OTP
 router.post('/verify', otpController.verifyOTP);
 
 
