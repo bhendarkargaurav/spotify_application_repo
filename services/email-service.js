@@ -16,14 +16,14 @@ class EmailService {
         },
       });
 
-      const mailOptions = {
+      const mailDetails = {
         from: 'gauravbhendarkar2024@gamil.com',
         to: email,
         subject: 'Hii Dear, Your OTP Code is dont share this one time password with anyone',
         text: `Your OTP code is: ${otp}`,
       };
 
-      const info = await transporter.sendMail(mailOptions);
+      const info = await transporter.sendMail(mailDetails);
       console.log('Email sent successfully:', info.response);
       return info;
     } catch (error) {
