@@ -14,6 +14,7 @@ const otpController = require('../../controllers/otp-controller');
 // User registration(USER HANDLER)
 router.post('/register', userController.createUser);
 router.post('/login', userController.login);       // User login route
+router.post('/refreshAccessToken', userController.refreshAccessToken);
 router.get('/users/:id', userController.getUserById);     // Get user by ID route
 router.put('/:id', userController.updateUser);    // Update user route
 router.delete('/:id', userController.deleteUser);    // Delete user route
