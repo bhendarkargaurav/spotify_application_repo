@@ -15,10 +15,10 @@ class OTPService {
                 throw new Error('Email is required');
             }
 
-            const otp = otpGenerator.generate(6, { digits: true, alphabets: false, upperCase: false, specialChars: false });
+            const otp = otpGenerator.generate(6, {digits: true, alphabets: false, upperCase: false, specialChars: false });
             const otpData = { otp, email };
 
-            console.log('Data to be saved:', otpData); // Debugging log
+            // console.log('Data to be saved:', otpData); // Debugging log
            
             // return await this.otpRepository.createOTP(otpData);
             await this.otpRepository.createOTP(otpData);
