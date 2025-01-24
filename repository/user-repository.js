@@ -23,6 +23,10 @@ class UserRepository {
         }
      }
 
+     async findByRefreshToken(refreshToken) {
+        return await User.findOne({ refreshToken }); // Assuming a User model exists
+      }
+
 //   // Method to find a user by email (for authentication, etc.)
      async findByEmail(email){
         try {

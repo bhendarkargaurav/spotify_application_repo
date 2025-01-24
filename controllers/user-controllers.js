@@ -26,12 +26,29 @@ const createUser = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const { user, token } = await userService.authenticateUser(email, password);
-    res.status(200).json({ user, token });
+    const { user, accessToken } = await userService.authenticateUser(email, password);
+    res.status(200).json({ user, accessToken });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
+
+
+const refreshAccessToken = async (req, res) => {
+  try {
+    const { refreshToken } = req.body;
+    // Ensure the refresh token is provided
+    if (!refreshToken) {
+      return res.status(400).json({ message: 'Refresh token is required' });
+    }
+    // Call the service to refresh the access token
+    const tokens = await userService.refreshAccessToken(refreshToken);
+    return res.status(200).json(tokens); // Send the new access token to the client
+  } catch (error) {
+    return res.status(401).json({ message: error.message });
+  }
+};
+
 
 const getUserById = async (req, res) => {
   try {
@@ -64,6 +81,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
     createUser,
     login,
+    refreshAccessToken,
     getUserById ,
     updateUser,
     deleteUser
