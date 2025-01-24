@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
   }, 
   otpExpiresAt: {   // Expiration time for the OTP
     type: Date }, 
+
+  refreshToken: { 
+    type: String // Stores the user's refresh token
+  }  
 });
 
 const User = mongoose.model('User', userSchema);
