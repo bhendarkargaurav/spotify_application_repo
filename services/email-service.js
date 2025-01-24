@@ -1,3 +1,5 @@
+// to send email,  It specifically includes functionality to send a One-Time Password (OTP) to a user's email address.
+
 const nodemailer = require('nodemailer');
 
 class EmailService {
@@ -19,7 +21,7 @@ class EmailService {
       const mailDetails = {
         from: 'gauravbhendarkar2024@gamil.com',
         to: email,
-        subject: 'Hii Dear, Your OTP Code is dont share this one time password with anyone',
+        subject: 'Hii Dear, dont share ypur one time password(OTP) with anyone',
         text: `Your OTP code is: ${otp}`,
       };
 
