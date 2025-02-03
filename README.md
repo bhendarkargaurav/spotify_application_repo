@@ -1,4 +1,4 @@
-## Spotify Backend 
+## Spotify inspired music streaming Backend 
 
 ### This is a simplified version of spotify_backend Using Nodejs, express and MongoDB.
 
