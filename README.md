@@ -24,7 +24,7 @@
     ## Postman API Call
 
       # Authentication:  
-        http://localhost:3001/api/register
+        register = http://localhost:3001/api/register
         http://localhost:3001/api/login
         http://localhost:3001/api/generateotp
         http://localhost:3001/api/verify
