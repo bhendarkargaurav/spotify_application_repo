@@ -19,3 +19,12 @@
         song can be added including name, artist, time and all the neccesary details
         user can able to fetch song using song id,
         user can update and delete song.
+
+
+    ## Postman API Call
+
+      # Authentication:  
+        http://localhost:3001/api/register
+        http://localhost:3001/api/login
+        http://localhost:3001/api/generateotp
+        http://localhost:3001/api/verify
