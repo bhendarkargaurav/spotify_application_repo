@@ -1,16 +1,8 @@
 const express = require('express');
 const cors = require("cors");
 
-
 const connect = require('./config/database');
 const { PORT } = require('./config/serverConfig');
-
-// const Album = require('./models/album');
-// const UserRepository = require('./repository/user-repository');
-// const ArtistRepository = require('./repository/artist-repository');
-// const UserService = require('./services/user-service');
-// const createUser = require('./controllers/user-controllers')
-
 
 const userRoutes = require('./routes/v1/index');
 
@@ -25,14 +17,6 @@ const setupAndStartServer = () => {
         await connect();
         console.log('mongoDB connected');
 
-        // const album = await Album.create({
-        //     title: 'Tollywood',
-        //     artist: 'Manasa',
-        //     songs: [],
-        //     genre: 'fock song'
-        // });
-        // console.log(album);
-
 
         // const artistRepo = ArtistRepository;
         // const artist = await ArtistRepository.createArtist({          //direct fetching from repo
@@ -44,7 +28,7 @@ const setupAndStartServer = () => {
         // console.log("artist created succesfully", artist);
 
         // const userRepo = new UserRepository();
-        // // console.log("userdara is ", userData);
+        // console.log("userdata is ", userData);
         // const user = await userRepo.createUser({          //direct fetching from repo
         //     username: 'Aarthi',
         //     email: 'aarthi123@.com',
@@ -59,8 +43,8 @@ const setupAndStartServer = () => {
         app.use('/api', userRoutes);
         
         
-    })
-}
+    });
+};
 
 setupAndStartServer();
 
