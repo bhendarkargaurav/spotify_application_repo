@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require("cors");
+const cookieparser = require('cookie-parser');
 
 const connect = require('./config/database');
 const { PORT } = require('./config/serverConfig');
@@ -10,6 +11,7 @@ const setupAndStartServer = () => {
     const app = express();
     app.use(express.json());
     app.use(cors()); 
+    app.use(cookieparser());
     app.use(express.urlencoded({extended: true}));
 
     app.listen(PORT, async () => {
