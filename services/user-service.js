@@ -2,7 +2,7 @@
 // services/userService.js
 const UserRepository = require('../repository/user-repository.js');
 const bcrypt = require('bcrypt');
-const crypto = require('crypto');
+// const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 class UserService {
@@ -44,7 +44,6 @@ class UserService {
     }
 
     // Check password
-    // console.log(password);
     console.log(user.password);
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
@@ -52,16 +51,20 @@ class UserService {
     }
 
     // Generate JWT(access) token
-    const accessToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const accessToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: process.env.ACCESS_TOKEN_EXPIRY });
 
     // Generate refresh token
-    const refreshToken = crypto.randomBytes(40).toString('hex');
-    const refreshTokenExpiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days from now
-
-    user.refreshToken = refreshToken;
-    user.refreshTokenExpiresAt = refreshTokenExpiresAt;
-    await user.save();
-
+     const refreshToken = jwt.sign({
+      userId: user._id,
+      }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: process.env.REFRESH_TOKEN_EXPIRY });
+    
+    // other way to generate refresh tocken
+      // const refreshToken = crypto.randomBytes(40).toString('hex');
+    // // const refreshTokenExpiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days from now
+    // const refreshTokenExpiresAt = process.env.REFRESH_TOKEN_EXPIRY
+    user.refreshToken = refreshToken;          //The generated refresh token is saved inside the user object.
+    await user.save();                         // Store refresh token in DB in user object
+   
     return { user, accessToken, refreshToken};
   }
 
@@ -74,10 +77,9 @@ class UserService {
       throw new Error('Invalid refresh token');
     }
     // Generate new access token
-    const newAccessToken = jwt.sign({ userId: user._id },process.env.JWT_SECRET,{ expiresIn: '1h' });
+    const newAccessToken = jwt.sign({ userId: user._id },process.env.JWT_SECRET,{ expiresIn: process.env.ACCESS_TOKEN_EXPIRY });
     return { accessToken: newAccessToken };
   }
-  
 
   // Find a user by ID
   async getUserById(userId) {
