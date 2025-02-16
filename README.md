@@ -28,3 +28,5 @@
         http://localhost:3001/api/login
         http://localhost:3001/api/generateotp
         http://localhost:3001/api/verify
+
+  Authentication document : https://www.geeksforgeeks.org/jwt-authentication-with-refresh-tokens/      
