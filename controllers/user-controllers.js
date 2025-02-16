@@ -1,6 +1,7 @@
 
 // controllers/userController.js
 const UserService = require('../services/user-service');
+const cookieparser = require('cookie-parser');
 const userService = new UserService();
 
 
@@ -26,8 +27,20 @@ const createUser = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const { user, accessToken } = await userService.authenticateUser(email, password);
-    res.status(200).json({ user, accessToken });
+    // Authenticate user and generate tokens
+    const { user, accessToken, refreshToken } = await userService.authenticateUser(email, password);
+
+     // Assigning refresh token in http-only cookie 
+     res.cookie('jwt', refreshToken, {
+      httpOnly: true,  // Prevents JavaScript from accessing the cookie
+      sameSite: 'None', // For cross-origin requests (if applicable)
+      secure: false,    // Set to false for local HTTP testing
+      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days expiration time
+    });
+    
+    
+     // Send response with access token and user details
+    return res.status(200).json({ user, accessToken });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
