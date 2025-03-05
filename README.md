@@ -28,5 +28,6 @@
         http://localhost:3001/api/login
         http://localhost:3001/api/generateotp
         http://localhost:3001/api/verify
-
+  Tech Blog: https://medium.com/@gauravbhendarkar2024/mastering-secure-authentication-in-node-js-with-bcrypt-jwt-access-refresh-tokens-17a0c9a4ba23
+  (written by bhendarkargaurav)
   Authentication document : https://www.geeksforgeeks.org/jwt-authentication-with-refresh-tokens/      
