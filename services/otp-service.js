@@ -22,7 +22,7 @@ class OTPService {
            
             // return await this.otpRepository.createOTP(otpData);
             await this.otpRepository.createOTP(otpData);
-            console.log(`OTP generated: ${otp}`);
+            // console.log(`OTP generated: ${otp}`);
 
             //Send Otp
             await this.emailService.sendOTP(email, otp);  // send otp to mail
