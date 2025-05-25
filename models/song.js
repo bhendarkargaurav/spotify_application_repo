@@ -24,7 +24,8 @@ const songSchema = new mongoose.Schema({
   }, 
   genre: { 
     type: String 
-  },
+  }, timestamps: true
+  
 });
 
 const Song = mongoose.model('Song', songSchema);
