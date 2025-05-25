@@ -8,15 +8,15 @@ const songSchema = new mongoose.Schema({
     required: true 
   },
   artist: {
-    // type: mongoose.Schema.Types.ObjectId,
-    type: 'String',
+    type: mongoose.Schema.Types.ObjectId,
+    // type: 'String',
     ref: 'Artist',
-    // required: true 
+    
   },
   album: { 
-    // type: mongoose.Schema.Types.ObjectId, 
-    type: 'String',
-    ref: 'Album'                             
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Album',
+    required: true                             
   },
   duration: {        // Duration in seconds
     type: Number, 
@@ -24,9 +24,9 @@ const songSchema = new mongoose.Schema({
   }, 
   genre: { 
     type: String 
-  }, timestamps: true
+  }
   
-});
+}, {timestamps: true});
 
 const Song = mongoose.model('Song', songSchema);
 module.exports = Song;
