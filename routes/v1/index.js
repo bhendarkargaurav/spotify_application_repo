@@ -2,6 +2,9 @@
 const express = require('express');
 const router = express.Router();
 
+const { uploadAudio } = require('../../controllers/audio-controller.js');
+const { audioUpload } = require('../../middleware/multerMiddleware.js');
+
 
 const userController = require('../../controllers/user-controllers');
 const songController = require('../../controllers/song-controller');
@@ -56,5 +59,7 @@ router.delete('/artist/:id', artistController.deleteArtistById);
 router.post('/generateotp', otpController.generateOTP);
 router.post('/verify', otpController.verifyOTP);
 
+
+router.post('/upload-audio', audioUpload.single('audioFile'), uploadAudio);
 
 module.exports = router;

@@ -5,27 +5,29 @@ require('../models/album');
 const songSchema = new mongoose.Schema({
   title: { 
     type: String,
-    required: true 
+    // required: true 
   },
   artist: {
     type: mongoose.Schema.Types.ObjectId,
-    // type: 'String',
     ref: 'Artist',
     
   },
   album: { 
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Album',
-    required: true                             
+    ref: 'Album',                          
   },
   duration: {        // Duration in seconds
     type: Number, 
-    required: true 
+    // required: true 
   }, 
   genre: { 
     type: String 
-  }
-  
+  },
+  cloudinaryUrl: { 
+    type: String, 
+    required: true 
+  },
+
 }, {timestamps: true});
 
 const Song = mongoose.model('Song', songSchema);
