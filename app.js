@@ -5,12 +5,14 @@ const connect = require('./config/database');
 const { PORT } = require('./config/serverConfig');
 const userRoutes = require('./routes/v1/index');
 
- const app = express();
+const app = express();
 
 app.use(express.json());
 app.use(cors()); 
 app.use(cookieparser());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true, limit: '50mb'}));
+app.use(express.json({ limit: '50mb' }));
+
 
 app.use('/api', userRoutes);
 
@@ -24,37 +26,7 @@ const setupAndStartServer = async () => {
         });
     } catch (error) {
         console.log(error)
-   
-
-
-    
-
-
-        // const artistRepo = ArtistRepository;
-        // const artist = await ArtistRepository.createArtist({          //direct fetching from repo
-        //     name: 'Arijit',
-        //     bio: 'Top song Ye dil hai mushkil',
-        //     profileImageUrl: 'hghjcfdfjhbcakbjbc',
-        //     socialLinks: "BlankSpace"                                 // when we are using model into repository 
-        // });  
-        // console.log("artist created succesfully", artist);
-
-        // const userRepo = new UserRepository();
-        // console.log("userdata is ", userData);
-        // const user = await userRepo.createUser({          //direct fetching from repo
-        //     username: 'Aarthi',
-        //     email: 'aarthi123@.com',
-        //     password: '9080',
-        //     playlists: "BlankSpace"                                 // when we are using model into repository 
-        // });                                                              // and repository into index.js
-        // const user = await userRepo.findById('67265d0525ead4f6f98096ec');
-        // const user = await userRepo.findByEmail("gaurav123@.com");
-       
-        // const userRepo = new UserService();
-        
-
-        
-     }
+    }
 }    
     
 setupAndStartServer();
