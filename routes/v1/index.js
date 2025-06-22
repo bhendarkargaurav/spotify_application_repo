@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { uploadAudio } = require('../../controllers/audio-controller.js');
+const { uploadAudio, getSongByName } = require('../../controllers/audio-controller.js');
 const { audioUpload } = require('../../middleware/multerMiddleware.js');
 
 
@@ -61,5 +61,5 @@ router.post('/verify', otpController.verifyOTP);
 
 
 router.post('/upload-audio', audioUpload.single('audioFile'), uploadAudio);
-
+router.get('/playsong', getSongByName)
 module.exports = router;
