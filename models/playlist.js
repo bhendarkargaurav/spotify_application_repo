@@ -13,6 +13,10 @@ const playlistSchema = new mongoose.Schema({
         ref: 'User', 
         required: true 
     }, // Owner of the playlist
+    members: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    }],
     songs: [{ 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Song' 
@@ -24,7 +28,7 @@ const playlistSchema = new mongoose.Schema({
     isPublic: { 
         type: Boolean, 
         default: false 
-    } // If the playlist is visible to others
+    } 
 })
 
 const Playlist = mongoose.model('Playlist', playlistSchema);
