@@ -28,7 +28,7 @@ app.use(express.json({ limit: '50mb' }))
 app.use('/api', userRoutes);
 
 app.get('/hello', (req, res) => {
-  res.send('Hello, Deployed on AWS');
+  res.send('Hello');
 });
 
 const setupAndStartServer = async () => {
@@ -37,7 +37,7 @@ const setupAndStartServer = async () => {
         console.log('mongoDb connected');
 
         server.listen(PORT, () => {
-            console.log('Server started at port', PORT || 3002)
+            console.log('Server started at port', PORT)
         });
     } catch (error) {
         console.log(error)
