@@ -37,7 +37,7 @@ const setupAndStartServer = async () => {
         console.log('mongoDb connected');
 
         server.listen(PORT, () => {
-            console.log('Server started at port', PORT)
+            console.log('Server started at port', PORT || 3002)
         });
     } catch (error) {
         console.log(error)
