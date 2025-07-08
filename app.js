@@ -27,6 +27,10 @@ app.use(express.urlencoded({extended: true, limit: '50mb'}));
 app.use(express.json({ limit: '50mb' }))
 app.use('/api', userRoutes);
 
+app.get('/hello', (req, res) => {
+  res.send('Hello, Deployed on AWS');
+});
+
 const setupAndStartServer = async () => {
     try {
         await connect();
