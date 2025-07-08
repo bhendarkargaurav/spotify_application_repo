@@ -9,14 +9,13 @@ const songSchema = new mongoose.Schema({
   },
   artist: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Artist',
-    
+    ref: 'Artist', 
   },
   album: { 
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Album',                          
   },
-  duration: {        // Duration in seconds
+  duration: {        
     type: Number, 
     // required: true 
   }, 

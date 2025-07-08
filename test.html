@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>🎧 Real-time Song Sync</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+  <h2>🎵 Sync Playback Test</h2>
+
+  <label>Playlist ID: <input id="playlistId" value="6857ff7bf82c871b0aab25e0" /></label><br><br>
+  <label>User ID: <input id="userId" value="6857fe62f82c871b0aab25d7" /></label><br><br>
+  <label>Song Title: <input id="songTitle" value="life" /></label><br><br>
+
+  <button onclick="join()">Join Playlist</button>
+  <button onclick="play()">Play</button>
+  <button onclick="pause()">Pause</button>
+  <button onclick="seek()">Seek to 60s</button>
+  <button onclick="next()">Next</button>
+
+  <audio id="player" controls style="margin-top: 20px; width: 100%;"></audio>
+  <div id="log" style="margin-top: 20px; background: #eee; padding: 10px;"></div>
+
+  <script>
+    const socket = io("http://localhost:3001"); // change port if different
+
+    const log = (msg) => {
+      const el = document.getElementById("log");
+      el.innerHTML += `<div>${msg}</div>`;
+    };
+
+    function join() {
+      const playlistId = document.getElementById("playlistId").value;
+      const userId = document.getElementById("userId").value;
+      socket.emit("join_playlist", { playlistId, userId });
+      log(`📥 Joined playlist: ${playlistId} as ${userId}`);
+    }
+
+    function play() {
+      const playlistId = document.getElementById("playlistId").value;
+      const songTitle = document.getElementById("songTitle").value;
+      socket.emit("play_song", { playlistId, songTitle });
+    }
+
+    function pause() {
+      const playlistId = document.getElementById("playlistId").value;
+      socket.emit("pause_song", { playlistId });
+    }
+
+    function seek() {
+      const playlistId = document.getElementById("playlistId").value;
+      socket.emit("seek_song", { playlistId, position: 60 });
+    }
+
+    function next() {
+      const playlistId = document.getElementById("playlistId").value;
+      socket.emit("next_song", { playlistId });
+    }
+
+    // Playback events
+    socket.on("play_song", ({ songTitle }) => {
+  const audio = document.getElementById("player");
+  log(`🎵 Playing: ${songTitle}`);
+
+  // 🔧 Fetch the actual audio file URL from your backend
+  fetch(`http://localhost:3001/api/playsong?title=${encodeURIComponent(songTitle)}`)
+    .then(res => res.json())
+    .then(data => {
+      const fileUrl = data?.data?.url;
+      if (!fileUrl) {
+        log("❌ No audio URL found in backend response.");
+        return;
+      }
+
+      log(`▶️ Streaming from: ${fileUrl}`);
+      audio.src = fileUrl;
+      audio.play();
+    })
+    .catch(err => {
+      log(`❌ Failed to fetch audio: ${err.message}`);
+    });
+});
+
+
+    socket.on("pause_song", () => {
+      log("⏸️ Song paused");
+      document.getElementById("player").pause();
+    });
+
+    socket.on("seek_song", ({ position }) => {
+      const audio = document.getElementById("player");
+      audio.currentTime = position;
+      log(`⏩ Seeked to ${position}s`);
+    });
+
+    socket.on("next_song", () => {
+      log("⏭️ Next song triggered (demo)");
+    });
+
+    socket.on("user_joined", (userId) => {
+      log(`👤 User joined: ${userId}`);
+    });
+
+    socket.on("error", (msg) => {
+      log(`❌ Error: ${msg}`);
+    });
+
+    socket.on("connect", () => {
+      log(`✅ Connected to server: ${socket.id}`);
+    });
+  </script>
+</body>
+</html>

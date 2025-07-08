@@ -7,7 +7,7 @@ const connect = require('./config/database');
 const { PORT } = require('./config/serverConfig');
 const userRoutes = require('./routes/v1/index');
 
-const playbackSocketHandler = require('./sockets/synchronousplay.js');
+const playbackSocketHandler = require('./controllers/synchronousplay.js');
 const app = express();
 
 const server = http.createServer(app);
