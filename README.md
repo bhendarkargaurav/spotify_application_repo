@@ -34,4 +34,4 @@
   Authentication document : https://www.geeksforgeeks.org/jwt-authentication-with-refresh-tokens/      
 
 
-  synchrounize audio experincr
+  synchrounize audio experince, working properly need to modifi more
